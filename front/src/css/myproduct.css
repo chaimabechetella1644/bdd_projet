@@ -1,0 +1,108 @@
+
+* p{
+    font-size: 16px
+}
+
+.produit {
+    background-color: rgba(89, 89, 89, 0.26);
+    width: 900px;
+    padding: 20px 10px;
+    height: 400px;
+    margin: 100px auto 150px auto;
+}
+
+.produit h1  {
+    margin-top: 30px;
+    color: rgb(234,234,234);
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 25px;
+    
+}
+
+.produit .info {
+    display: flex;
+}
+
+
+.produit .left {
+    width: 500px;
+}
+
+.produit .left img {
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+}
+
+.produit h3 {
+    color: rgb(234,234,234);
+    text-transform: capitalize;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+
+.produit .right {
+    color: rgba(94, 94, 94, 1);
+}
+
+.produit .right .color {
+    display: flex;
+}
+
+.produit .right .color div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+   
+}
+.produit .right .color .color1 {
+    background-color: antiquewhite;
+}
+.produit .right .color .color2 {
+    background-color: burlywood;
+}
+.produit .right .color .color3 {
+    background-color: black;
+}
+.produit .right .color .color4 {
+    background-color: brown;
+}
+
+.produit .right .size{
+    display: flex;
+}
+
+.produit .right .size div {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    padding: 2px;
+    margin-right: 10px;
+    color: rgb(234,234,234);
+    border: 1px solid rgba(94, 94, 94, 1) ;
+   
+}
+
+.produit .button button {
+    padding: 7px 14px;
+    
+    border-radius: 5px;
+    color: rgb(234,234,234) ;
+    text-transform: capitalize;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 15px;
+    font-weight: bolder;
+}
+
+.produit .button .button1 {
+    background-color: #EE873D;
+    border: none ;
+}
+
+.produit .button .button2 {
+    background-color: inherit;
+    border: 1px solid rgba(94, 94, 94, 1)  ;
+} 

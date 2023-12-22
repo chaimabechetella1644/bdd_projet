@@ -1,0 +1,171 @@
+
+
+
+
+
+:root {
+    --main-color : #EE873D;
+    --main-transition : 0.3s;
+}
+
+
+header h1 {
+    color: rgba(238,135 ,61 , 33%);
+    font-size: 140px ;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.page {
+    position: relative;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    filter: blur(50px);
+} 
+
+
+.circle1 {
+    position: absolute;
+    top: 20%;
+    left: -5%; 
+    background: linear-gradient(to right, #ffcc00, #ff6600);
+}
+
+.circle2 {
+    position: absolute;
+    bottom: 55%;
+    left: 24%;
+    background-color: #AB7E26;
+}
+.circle3 {
+    position: absolute;
+    bottom: 30%;
+    right: 10%;
+    background-color: #AB7E26;
+}
+.circle4 {
+    position: absolute;
+    top: 0%;
+    left: 75%;
+    background: linear-gradient(to right, #ffcc00, #ff6600);
+
+}
+
+.women_collection {
+    margin-bottom: 100px
+    ;
+}
+
+.women_collection h1 {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    margin-bottom: 80px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.women_collection h1::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 50%;
+    background-color: var(--main-color);
+    top: 37px;
+    left: 0%;
+    transition: width var(--main-transition) ease-in-out;
+}
+
+.women_collection h1:hover:after {
+    width: 100%;
+}
+
+.women_collection .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.women_collection .card { 
+     width: 250px;
+     height: 330px;
+     margin-bottom: 35px;
+     background: linear-gradient(to bottom , rgba(255,255,255,30%)20%,rgba(255,255,255,1%)85%) ;
+     border-radius: 25px;
+     margin-right: 25px ;
+     transition: transform var(--main-transition);
+}
+.women_collection .card:hover {
+        transform: translateY(-10px);
+}
+
+
+
+.women_collection .cards .card .img {
+    height: 200px;
+    width: auto;
+}
+.women_collection .cards .card img {
+    height: 200px;
+    width: 250px;
+} 
+.women_collection .cards .card .text {
+    margin-top: 25px;
+}
+.women_collection .cards .card .text .p {
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+.women_collection .cards .price  {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-left: 25px;
+    margin-right: 25px;
+    width: auto;
+    height: 50px;
+}
+
+.women_collection .cards .price img {
+    width: 15px;
+    height: 15px;
+}
+.women_collection .cards .price p {
+    font-weight: bold;
+    color: #EE873D;
+}
+.women_collection .cards .price .img{
+    
+    width: 45px;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.women_collection button {
+    display: flex;
+    color: black;
+    background-color: var(--main-color);
+    padding: 10px 20px;
+    border: 1px solid var(--main-color);
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.women_collection button img {
+    width: 15px;
+    height: 15px;
+    margin-left: 7px;
+}

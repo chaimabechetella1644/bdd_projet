@@ -1,0 +1,151 @@
+
+
+*{
+    margin: 0;
+    padding: 0 ;
+}
+
+.signUp {
+    height: 100vh;
+}
+
+body {
+    height: 100vh;
+}
+
+.form {
+    width: 350px;
+    height: 400px;
+    /* background-color: rgba(255, 255, 255, 0.04); */
+    background-color: rgba(217, 217, 217, 0.03);
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(149, 146, 144, 0.2);
+  
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    filter: blur(50px);
+} 
+
+
+.circle1 {
+    position: absolute;
+    top: 20%;
+    left: -5%; 
+    background:#AB7E26;
+}
+
+.circle2 {
+    position: absolute;
+    bottom: 30%;
+    left: 24%;
+    background-color: #AB7E26;
+}
+
+.circle3 {
+    position: absolute;
+    bottom: 30%;
+    right: 0%;
+    background-color: #AB7E26;
+}
+
+.circle4 {
+    position: absolute;
+    top: 0%;
+    left: 75%;
+    background: #AB7E26;
+
+}
+
+.form h1 {
+    color: rgb(234,234,234);
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form form input {
+    border: none;
+    width: 330px;
+    background-color: initial;
+    margin-top: 15px;
+    height: 35px;
+    color: rgb(234,234,234);
+    
+    border-bottom: 1px solid rgba(255, 141, 58, 30%);
+}
+
+.form form input:focus {
+    color: rgb(234,234,234);
+}
+
+.form form ::placeholder {
+    color: rgb(234,234,234) ;
+    text-transform: capitalize;
+    
+}
+
+.form .create {
+    background-color: #EE873D;
+    margin-top: 100px;
+    width: 330px;
+    padding: 10px;
+    color: rgb(234,234,234);
+    font-weight: bolder;
+    text-transform: capitalize;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    display: flow;
+
+}
+.form p {
+    color: rgb(234,234,234) ;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 12px;
+
+}
+
+.form p a {
+    color: #EE873D;
+    text-transform: none;
+}
+
+.form hr {
+    margin-bottom: 10px;
+    border-color: rgba(255, 141, 58, 30%);
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form .google {
+    background-color: initial;
+    display: flex;
+    justify-content: center;
+    width: 330px;
+    border: 1px solid rgba(217, 217, 217, 0.15);
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.form .google img {
+    width: 15px;
+    height: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 15px;
+}
+
