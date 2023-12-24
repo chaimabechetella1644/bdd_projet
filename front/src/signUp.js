@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './css/signUp.css'
 import google from "./images/Google.png"
 import Login from './login';
+import Navbar from './compenents/navbar';
 import { BrowserRouter, Link , Route,Routes,NavLink, Router,Switch, useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 
@@ -38,6 +39,7 @@ export default function Signup() {
 
     return(
         <div className='signUp'>
+            <Navbar/>
 
             <div className='form' >
                 <h1> create accont</h1>

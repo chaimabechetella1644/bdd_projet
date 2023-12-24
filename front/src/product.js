@@ -3,6 +3,7 @@ import Carte from "./compenents/carte" ;
 import Footer from "./compenents/footer";
 import img from "./images/arrow_forward.png"
 import { useState } from "react";
+import Navbar from './compenents/navbar';
 import './css/product.css'
 
 export default function Product() {
@@ -28,6 +29,7 @@ export default function Product() {
 
     return (
     <div>
+        <Navbar/>
 
     <header>
         <h1> Men</h1>

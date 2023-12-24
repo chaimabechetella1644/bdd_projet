@@ -3,11 +3,13 @@ import image12 from "./images/Rectangle 17.png"
 import Carte from "./compenents/carte"
 import './css/myproduct.css'
 import './css/home.css'
+import Navbar from './compenents/navbar';
 import Footer from './compenents/footer'
 
 export default function MyProduct() {
     return (
         <div>
+            <Navbar/>
             <div className="produit">
                 <h1> Vital Seamless </h1>
                 <div className="info">

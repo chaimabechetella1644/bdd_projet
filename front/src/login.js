@@ -1,11 +1,13 @@
 
 import { BrowserRouter, Link , Route,Routes,NavLink, Router,Switch, useLocation } from 'react-router-dom';
 import google from './images/Google.png'
+import Navbar from './compenents/navbar';
 import "./css/login.css"
 
 export default function Login() {
     return(
         <div className='login'>
+            <Navbar/>
 
             <div className='form'>
                 <h1> log in</h1>

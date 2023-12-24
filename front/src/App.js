@@ -16,6 +16,12 @@ import Signup from './signUp';
 import Login from './login';
 import Favoris from './favoris';
 import MyProduct from './myproduct';
+import Admin from './Admin/Admin';
+import Offres from './Admin/offres';
+import Commande from './Admin/commande';
+import ProductAd from './Admin/productAd';
+import CategorieiAd from './Admin/categoriesAd';
+import Profil from './Admin/profile';
 import { useState } from 'react';
 
 function App() {
@@ -41,37 +47,7 @@ function App() {
     
     <div className="App">
       <BrowserRouter>
-      <div className="navbar">
-        <ul className="left">
-          <li> <NavLink to="/"> <img src={logo} alt=""/></NavLink></li>
-        </ul>
-
-        <div className="center">
-          <NavLink to="/" style={({isActive})=>{
-                return isActive ? { color: '#EE873D'} : {}
-                }} > Home </NavLink>
-          <NavLink to="/men" style={({isActive})=>{
-                return isActive ? { color: '#EE873D'} : {}
-                }}> Men </NavLink>
-          <NavLink to="/women" style={({isActive})=>{
-                return isActive ? { color: '#EE873D'} : {}
-                }}> Women </NavLink>
-          <NavLink to="/machines" style={({isActive})=>{
-                return isActive ? { color: '#EE873D'} : {}
-                }}> Machines </NavLink>
-        </div>
-
-        <div className="right">
-          <NavLink to="/favoris" > <img src={icon1} alt="" /> </NavLink>
-          <NavLink to="/panier" onClick={({isActive}) => { isActive? img={icon2} : img={icon4} }} > 
-          {/* <img src={isActive('/panier') ? icon2 : icon4} alt="" /> */}
-          <img src={img}/>
-          </NavLink>
-          <NavLink to="/compte"> <img src={icon3} alt=""/> </NavLink>
-          <NavLink to="/product">page</NavLink>
-        </div>
-      </div>
-
+      
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/men" exact element={<Product/>} />
@@ -82,6 +58,13 @@ function App() {
         <Route path='/login'exact element={<Login />} />
         <Route path='/favoris' exact element={<Favoris />} />
         <Route path='/product' exact element={<MyProduct/>}></Route>
+        <Route path='/admin' exact element={<Profil/>}></Route>
+        <Route path='/offre' exact element={<Offres/>}></Route>
+        <Route path='/commande' exact element={<Commande/>}></Route>
+        <Route path='/produitadmin' exact element={<ProductAd/>}></Route>
+        <Route path='/categoriesadmin' exact element={<CategorieiAd/>}></Route>
+        <Route path='/profil' exact element={<Profil/>}></Route>
+
         
       </Routes>
     </BrowserRouter>

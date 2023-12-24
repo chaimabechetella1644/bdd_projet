@@ -2,6 +2,7 @@
 import CartePanier from './compenents/cartePanier'
 import Footer from './compenents/footer'
 import { useRef } from 'react';
+import Navbar from './compenents/navbar';
 import './css/panier.css'
 
 export default function Panier() {
@@ -22,6 +23,8 @@ export default function Panier() {
     
     return (
         <div className="Panier">
+            <Navbar/>
+
             <div ref={ele2ref} id='page'>
             <div className="page2">
                 <h1> Panier</h1>

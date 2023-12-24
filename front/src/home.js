@@ -1,19 +1,30 @@
  
  import React, { useEffect, useRef } from 'react';
- import Navbar from './compenents/navbar'
+ import Navbar from './compenents/navbar';
  import Carte  from './compenents/carte'
  import Cartecat from './compenents/carteCategorie'
  import Footer from './compenents/footer'
- import img3 from './images/pro.png'
+ import img3 from './images/image111.png'
  import img4 from './images/NORTHPLUS_11G-677_BLK-removebg-preview.png'
+ import { BrowserRouter, Link , Route,Routes,NavLink, Router,Switch, useLocation } from 'react-router-dom';
+ import logo from './images/Group 1.png' ;
+ import icon1 from './images/Vector.png' ;
+ import icon2 from './images/Vector (2).png' ;
+ import icon3 from './images/Vector (1).png' ;
+ import icon4 from './images/Vector (5).png' ;
+ import icon5 from './images/Vector (4).png';
+ 
 
  import './css/home.css'
 
 
  export default function Home() {
-   
-    return(
+    let img = icon2 
+    return(     
+
         <div className="body">
+
+            <Navbar/>
         
             <header>
 
