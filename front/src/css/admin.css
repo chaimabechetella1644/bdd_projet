@@ -533,6 +533,22 @@ ul {
     font-size: 13px;
 }
 
+.responsive-table .deleteImg img{
+    width: 15px;
+    height: 15px;
+    /* margin-top: auto;
+    margin-right: auto; */
+}
+.responsive-table .deleteImg button {
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    height: 20px;
+    margin-top: auto;
+    margin-right: auto;
+
+}
+
 .content button {
         margin: 30px 20px ;
         width: fit-content;
@@ -691,8 +707,8 @@ ul {
     right: 70px;
 }
 .offres .content .icons img {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
 
 .offres button {

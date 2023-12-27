@@ -6,8 +6,8 @@ import logo from '../images/Group 1.png';
 import profil from '../images/profil.png';
 import '../css/admin.css';
 import multi from '../images/signe-de-multiplication.png' 
-import React ,{ useRef } from 'react';
-
+import React ,{ useRef , useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 export default function Offres() {
@@ -15,7 +15,32 @@ export default function Offres() {
     const ele1ref = useRef(null) ;
     const change = () => {
         ele1ref.current.style.display = "flex" ;
+    }   
+
+    const [name, setName] = useState('') ;
+    const [information, setInformation] = useState('');
+    const [image, setImage] = useState('');
+    const [offreList, setoffresList] = useState([]);
+
+    const ajouterOffre = () => {
+        axios.post('http://localhost:7000/offre/insert',{ name_offres: name , information: information , image_offre: image }).then( () => {
+            alert("successful insert");
+          });  
     }
+
+    useEffect( () => {
+        axios.get('http://localhost:7000/offre/select').then( (response) => {
+          setoffresList(response.data)
+          console.log(response.data)
+        } ).catch(error => {
+            console.error('Error fetching offers:', error);
+        });
+      }, [])
+
+     const deleteoffre = (rev) => {
+            axios.get(`http://localhost:7000/offre/delete/${rev}`)
+     }
+
     return (
             <div class="page">
 
@@ -25,50 +50,34 @@ export default function Offres() {
                  <Head/>
                 <h1 class="p-relative">Offres</h1>
                 <div class="offres" >
-
+                {offreList.map( (val) => 
                     <div class="content">
                         <i class="fa-regular fa-square-check"></i>
                         <div class="info">
-                            <h3>Packaging Tools</h3>
-                            <h4>Gift boxex</h4>
-                            <p>Réduction : 20% </p>
-                            <p>durée : 03 jours </p>
+                            <h3>{val.name_offres}</h3>
+                            <p> {val.information} </p>
                         </div> 
                         <div class="icons">
-                            <a href="" ><img src={multi} alt='image'/></a>
+                            <a type='submit' onClick={deleteoffre(val.offre_id)} href="" ><img src={multi} alt='image'/></a>
                             
                         </div>
                     </div>
-
-                    <div class="content">
-                        <i class="fa-regular fa-square-check"></i>
-                        <div class="info">
-                            <h3>Livraison Gratuite</h3>
-                            <h4>Journée Mondiale de l'arbre</h4>
-                            <p>Réduction : 10% + Livraison gratuite </p>
-                            <p>durée : une journée | 23 Avril 2023 </p>
-                        </div> 
-                        <div class="icons">
-                            <a href="" ><img src={multi} alt='image'/></a>
-                            
-                        </div>
-                    </div>
-
+                    )}
                     <button onClick={change}> add offre</button>
                     </div>
 
                     <div class="form1" ref={ele1ref} >
                         <h2> ajouter un offre</h2>
                         <label for="name"> offre title : </label>
-                        <input type="text" id=''  name='name'/>
+                        <input type="text" id=''  name='name' onChange={ (e) => {setName(e.target.value)}} required/>
 
                         <label for='information'> offre infotmattion :</label>
-                        <input type='text' id='information' name='information'/>
+                        <input type='text' id='information' name='information' onChange={ (e) => {setInformation(e.target.value)}} required/>
 
                         <label for="image" className='custom-file-upload'> add picture</label>
-                        <input type="file" id="image" name="image1" accept="image/*" required></input>
+                        <input type="file" id="image" name="image1" accept="image/*"  onChange={ (e) => {setImage(e.target.value)}} required></input>
 
-                        <button>Ajouter</button>
+                        <button onClick={ajouterOffre}>Ajouter</button>
                          
                     </div>
                     
