@@ -38,7 +38,13 @@ export default function Offres() {
       }, [])
 
      const deleteoffre = (rev) => {
-            axios.get(`http://localhost:7000/offre/delete/${rev}`)
+            axios.delete(`http://localhost:7000/offre/delete/${rev}`).then(response => {
+                console.log(response);
+                
+            })
+            .catch(error => {
+                console.error('Error deleting offer:', error);
+            });
      }
 
     return (
@@ -58,7 +64,7 @@ export default function Offres() {
                             <p> {val.information} </p>
                         </div> 
                         <div class="icons">
-                            <a type='submit' onClick={deleteoffre(val.offre_id)} href="" ><img src={multi} alt='image'/></a>
+                            <a type='submit' onClick={() => deleteoffre(val.offre_id)} href="" ><img src={multi} alt='image'/></a>
                             
                         </div>
                     </div>

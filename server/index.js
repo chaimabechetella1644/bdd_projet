@@ -30,7 +30,7 @@ app.post ("/categories/insert", (req, res) => {
     const date_start = req.body.date_start ;
     const image_path = req.body.image_path;	
 
-    const dbCategoriesInsert = 'INSERT INTO categories (categories_name, num_product, date_start, image_path) VALUES (?,?,?,?)'
+    const dbCategoriesInsert = 'INSERT INTO categories_ad (categories_name, num_product, date_start, image_path) VALUES (?,?,?,?)'
      db.query(dbCategoriesInsert, [categories_name, num_product, date_start, image_path], (err,resultat) => {
         console.log(err)
      })    
@@ -47,8 +47,25 @@ app.post('/offre/insert' , (req, res) => {
     })
 })
 
+app.post('/product/insert' , (req, res) => {
+
+    const product_name = req.body.product_name ;
+    const categorie = req.body.categorie ;
+    const gender = req.body.gender ;
+    const description = req.body.description ;
+    const size = req.body.size ;
+    const color = req.body.color;
+    const price = req.body.price;
+    const product_image = req.body.product_image ;
+
+    const dbproductInsert = 'INSERT INTO products_ad (product_name, categorie, gender, description, size, color, price, product_image) VALUES (?,?,?,?,?,?,?,?)'
+    db.query(dbproductInsert, [product_name, categorie, gender, description, size, color, price, product_image], (err, resultat) => {
+        console.log(err);
+    })
+})
+
 app.get('/categories/select', (req, res) => {
-    const sqlSelectCategorie = "SELECT * FROM categories" ;
+    const sqlSelectCategorie = "SELECT * FROM categories_ad" ;
     db.query(sqlSelectCategorie, (err, result) => {
         res.send(result);
     })
@@ -60,9 +77,18 @@ app.get('/offre/select', (req, res) => {
         res.send(result);
     })
 })
-app.delete("/categories/delete/:categories_id", (req, res) => {
-    const name = req.params.categories_id; 
-    const sqlDelete = " DELETE FROM categories WHERE categories_id = ?" ;
+
+app.get('/product/select', (req, res) => {
+    const sqlSelectProduct = "SELECT * FROM products_ad";
+    db.query(sqlSelectProduct, (err, result) => {
+        res.send(result);
+        // console.log(result);
+    })
+})
+
+app.delete("/categories/delete/:categories_name", (req, res) => {
+    const name = req.params.categories_name; 
+    const sqlDelete = " DELETE FROM categories_ad WHERE categories_name = ?" ;
     db.query(sqlDelete, name, (err, result) => {
         if(err) console.log(err)
     })
@@ -70,9 +96,19 @@ app.delete("/categories/delete/:categories_id", (req, res) => {
 
 app.delete("/offre/delete/:offre_id", (req, res) => {
     const name = req.params.offre_id;
-    const sqlDeleteOffre = 'DELETE FROM offres WHERE offre_id = ?' ;
+    const sqlDeleteOffre = 'DELETE FROM offres WHERE offres.offre_id = ?';
     db.query(sqlDeleteOffre, name, (err, result) => {
-        console.log(err);
+        if(err) console.log(err)
+        else (res.status(204).send())
+    })
+})
+
+app.delete("/product/delete/:product_id", (req, res) => {
+    const name = req.params.product_id;
+    const sqlDeleteProduct = 'DELETE FROM products_ad WHERE product_id = ?';
+    db.query(sqlDeleteProduct, name, (err, result) => {
+        if(err) console.log(err)
+        else (res.status(204).send())
     })
 })
 

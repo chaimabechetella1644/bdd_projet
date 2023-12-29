@@ -6,6 +6,7 @@ import { useRef, useState , useEffect } from 'react';
 import Slidebar from '../compenents/slidebar';
 import Head from '../compenents/head';
 import axios from 'axios' ;
+import { useDispatch ,useSelector} from 'react-redux';
 
 export default function CategorieiAd() {
 
@@ -18,7 +19,7 @@ export default function CategorieiAd() {
     const [number, setNumber] = useState('') ;
     const [date, setDate] = useState('');
     const [image, setImage] = useState('');
-    const [categorieList, setCategorieList] = useState([]);
+    // const [categorieList, setCategorieList] = useState([]);
 
     const submitCategories = () => {
         axios.post("http://localhost:7000/categories/insert", {categories_name: name , num_product:number, date_start:date, image_path: image}).then( () => {
@@ -26,14 +27,20 @@ export default function CategorieiAd() {
           });  
     }
 
-    useEffect( () => {
-        axios.get('http://localhost:7000/categories/select').then( (response) => {
-          setCategorieList(response.data)
-          console.log(response.data)
-        } )
-      })
+    const dispatch = useDispatch();
 
-      const deleteCategorie = (rev) => {
+  useEffect(() => {
+    axios.get('http://localhost:7000/categories/select').then((response) => {
+      dispatch({ type: 'SET_CATEGORIES', payload: response.data });
+      console.log(response.data);
+    });
+  }, [dispatch]);
+
+  const categorieList = useSelector((state) => state.categorieList);
+
+
+
+    const deleteCategorie = (rev) => {
         axios.delete(`http://localhost:7000/categories/delete/${rev}`)
     }
 
@@ -69,7 +76,7 @@ export default function CategorieiAd() {
                                 <td>{val.categories_name}</td>
                                 <td> {val.num_product}</td>
                                 <td> {val.date_start} </td>
-                                <td type="submit" className='deleteImg'> <button onClick={ () => {deleteCategorie(val.categories_id)}}> <img src={suppr} alt='image'/> </button></td>
+                                <td type="submit" className='deleteImg'> <button onClick={ () => {deleteCategorie(val.categories_name)}}> <img src={suppr} alt='image'/> </button></td>
                                 </tr> )
                             }) }
 
