@@ -2,8 +2,9 @@
 import Carte from "./compenents/carte" ;
 import Footer from "./compenents/footer";
 import img from "./images/arrow_forward.png"
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import Navbar from './compenents/navbar';
+import axios from "axios";
 import './css/product.css'
 
 export default function Product() {
@@ -27,6 +28,28 @@ export default function Product() {
     }
 
 
+    const [productList, setProductList] = useState([]);
+    const [productList1, setProductList1] = useState([]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:7000/product/select');
+            if (response.data) {
+              setProductList(response.data.filter(product => product.categorie === "shoes" && product.gender === "men"));
+              setProductList1(response.data.filter(product => product.categorie === "shoes" && product.gender === "women"));
+
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+
     return (
     <div>
         <Navbar/>
@@ -40,20 +63,28 @@ export default function Product() {
         </header>
     <div class="main">
         <div class="women_collection">
-            <h1 className="product_women" > Womens collection</h1>
+            <h1 className="product_women" > Womens shoes</h1>
         
         <div class="cards">
-            {displayedProducts}
+        {productList1.slice(0, state.x).map(product => (
+           
+           <Carte product={product} />
+         
+         ))}
         </div>
         <button onClick={changeX}>{showMore ? 'Show More' : 'Show Less'} <img src={img} alt=""/></button>
         
         </div>
 
         <div class="women_collection">
-            <h1 className="product_women">shoes collection</h1>
+            <h1 className="product_women">Men shoes</h1>
     
         <div class="cards">
-            {displayedProducts1}
+        {productList.slice(0, state.x).map(product => (
+           
+           <Carte product={product} />
+         
+         ))}
         </div>
         <button onClick={changeX1}> {showMore1 ? 'Show More' : 'Show Less'} <img src={img} alt=""/></button>
     </div>

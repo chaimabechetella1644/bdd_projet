@@ -5,16 +5,17 @@ import img2 from '../images/Vectoror.png'
 import '../css/home.css'
 
 
-export default function Carte() {
+export default function Carte({product}) {
+    console.log(product);
     return(
         <div className="card">
             <div class="img">
-            <img src= {image} alt=""/>
+            <img src={`http://localhost:7000/images/${product.product_image}`} alt=""/>
             </div>
             <div class="text">
-                <p class="p"> Machine</p>
+                <p class="p"> {product.product_name}</p>
                 <div class="price">
-                    <p>56.00 $</p>
+                    <p>{product. price}$</p>
                     <div class="img">
                     <img src={img1} alt=""/>
                     <img src={img2} alt=""/>

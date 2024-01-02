@@ -1,5 +1,5 @@
  
- import React, { useEffect, useRef } from 'react';
+ import React, { useEffect, useState,useRef } from 'react';
  import Navbar from './compenents/navbar';
  import Carte  from './compenents/carte'
  import Cartecat from './compenents/carteCategorie'
@@ -29,6 +29,22 @@
         });
     }, [dispatch]);
     const categorieList = useSelector((state) => state.categorieList);
+
+
+
+    const [productList, setProductList] = useState([]);
+
+    useEffect( () => {
+        axios.get('http://localhost:7000/product/select').then( (response) => {
+          setProductList(response.data)
+          
+        } )
+      })
+
+
+
+
+
     return(     
 
         <div className="body">
@@ -63,13 +79,11 @@
                     <h1 className='titre_home'> New Product </h1>
                     <div className='container'>
                         <div class="cards">
-                            <Carte/>
-                            <Carte/>
-                            <Carte/>
-                            <Carte/>
-                            <Carte/>
-                            <Carte/>
-                            <Carte/>
+                        {productList.slice(0, 12).map(product => (
+           
+                            <Carte product={product} />
+                            
+                        ))}
                             
                         </div>
                     </div>

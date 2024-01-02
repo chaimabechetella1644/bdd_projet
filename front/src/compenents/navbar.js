@@ -23,13 +23,13 @@ return (
                 }} > Home </NavLink>
           <NavLink to="/men" style={({isActive})=>{
                 return isActive ? { color: '#EE873D'} : {}
-                }}> Men </NavLink>
+                }}> shoes </NavLink>
           <NavLink to="/women" style={({isActive})=>{
                 return isActive ? { color: '#EE873D'} : {}
-                }}> Women </NavLink>
+                }}> sportswear </NavLink>
           <NavLink to="/machines" style={({isActive})=>{
                 return isActive ? { color: '#EE873D'} : {}
-                }}> Machines </NavLink>
+                }}> equipement </NavLink>
            <NavLink to="/admin">admin</NavLink>
         </div>
 

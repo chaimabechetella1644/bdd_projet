@@ -30,14 +30,20 @@ export default function ProductEqui() {
     const [productList, setProductList] = useState([]);
 
 
-    useEffect( () => {
-        axios.get('http://localhost:7000/product/select').then( (response) => {
-        
-            if (response.data.categorie === "equipement") {
-                setProductList(response.data.filter(product => product.cacategorie === "equipement"))
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:7000/product/select');
+            if (response.data) {
+              setProductList(response.data.filter(product => product.categorie === "equipement"));
             }
-        } )
-      })
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
 
 
 
@@ -58,23 +64,19 @@ export default function ProductEqui() {
         </header>
     <div class="main">
         <div class="women_collection">
-            <h1 className="product_women" > Womens collection</h1>
+            <h1 className="product_women" > equipement</h1>
         
         <div class="cards">
-            {displayedProducts}
+            {console.log(productList)}
+        {productList.slice(0, state.x).map(product => (
+           
+              <Carte product={product} />
+            
+            ))}
         </div>
         <button onClick={changeX}>{showMore ? 'Show More' : 'Show Less'} <img src={img} alt=""/></button>
         
         </div>
-
-        <div class="women_collection">
-            <h1 className="product_women">shoes collection</h1>
-    
-        <div class="cards">
-            {displayedProducts1}
-        </div>
-        <button onClick={changeX1}> {showMore1 ? 'Show More' : 'Show Less'} <img src={img} alt=""/></button>
-    </div>
     </div>
     <Footer/>
     </div>
