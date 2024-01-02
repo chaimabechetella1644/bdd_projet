@@ -13,6 +13,8 @@ const CategorieReducer = (state = initialState, action) => {
   }
 };
 
+
+
 // Create the Redux store
 
 

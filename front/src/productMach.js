@@ -2,8 +2,9 @@
 import Carte from "./compenents/carte" ;
 import Footer from "./compenents/footer";
 import img from "./images/arrow_forward.png"
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import Navbar from './compenents/navbar';
+import axios from "axios";
 import './css/product.css'
 
 export default function ProductEqui() {
@@ -26,8 +27,25 @@ export default function ProductEqui() {
         setState(prevState => ({ ...prevState, x1: showMore1 ? products1.length : 8 }));
     }
 
+    const [productList, setProductList] = useState([]);
+
+
+    useEffect( () => {
+        axios.get('http://localhost:7000/product/select').then( (response) => {
+        
+            if (response.data.categorie === "equipement") {
+                setProductList(response.data.filter(product => product.cacategorie === "equipement"))
+            }
+        } )
+      })
+
+
+
+
+
 
     return (
+
     <div>
         <Navbar/>
 

@@ -7,7 +7,7 @@ import Head from '../compenents/head';
 import suppr from '../images/signe-de-multiplication.png' ;
 import '../css/admin.css';
 import { useRef, useState, useEffect} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 
@@ -28,10 +28,18 @@ export default function ProductAd() {
     const [picture, setPicture] = useState('');
     const [productList, setProductList] = useState([]);
 
-    const categorieList = useSelector((state) => state.categorieList);
 
     const submitProduct = () => {
-        axios.post("http://localhost:7000/product/insert", {product_name: name , categorie:category, gender:gender, description: discreption, size:size, color:color, price:price, product_image:picture}).then( () => {
+        const formdata = new FormData();
+        formdata.append('image', picture);
+        formdata.append('product_name', name);
+        formdata.append('categorie', category);
+        formdata.append('gender', gender);
+        formdata.append('description', discreption);
+        formdata.append('size', size);
+        formdata.append('color', color);
+        formdata.append('price', price);
+        axios.post("http://localhost:7000/product/insert", formdata).then( () => {
             alert("successful insert");
           }).catch(error => {
             console.error('Error fetching offers:', error);
@@ -44,10 +52,36 @@ export default function ProductAd() {
           
         } )
       })
+      
+
+    //   const dispatch1 = useDispatch();
+
+    //   useEffect(() => {
+    //     axios.get('http://localhost:7000/product/select').then((response) => {
+    //       dispatch1({ type: 'SET_PRODUCTS', payload: response.data });
+    //       console.log(response.data);
+    //     });
+    //   }, [dispatch1]);
+
+
+
 
       const deleteProduct = (rev) => {
         axios.delete(`http://localhost:7000/product/delete/${rev}`)
     }
+
+
+    const dispatch = useDispatch();
+
+        useEffect(() => {
+            axios.get('http://localhost:7000/categories/select').then((response) => {
+            dispatch({ type: 'SET_CATEGORIES', payload: response.data });
+            console.log(response.data);
+            });
+        }, [dispatch]);
+
+    const categorieList = useSelector((state) => state.categorieList);
+
 
     return (
 
@@ -122,7 +156,7 @@ export default function ProductAd() {
             <input type='text' id='price' name='information' onChange={ (e) => setPrice(e.target.value)} required/>
 
             <label for="image" className='custom-file-upload' > add picture </label>
-            <input type="file" id="image" name="image1" accept="image/*" onChange={ (e) => setPicture(e.target.value)} required></input>
+            <input type="file" id="image" name="image1" accept="image/*" onChange={ (e) => setPicture(e.target.files[0])} required></input>
 
             <button onClick={submitProduct}>Ajouter</button>
                          

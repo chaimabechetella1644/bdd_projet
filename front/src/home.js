@@ -10,9 +10,8 @@
  import logo from './images/Group 1.png' ;
  import icon1 from './images/Vector.png' ;
  import icon2 from './images/Vector (2).png' ;
- import icon3 from './images/Vector (1).png' ;
- import icon4 from './images/Vector (5).png' ;
- import icon5 from './images/Vector (4).png';
+ import { useSelector, useDispatch} from 'react-redux';
+ import axios from 'axios';
  
 
  import './css/home.css'
@@ -20,6 +19,16 @@
 
  export default function Home() {
     let img = icon2 
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        axios.get('http://localhost:7000/categories/select').then((response) => {
+        dispatch({ type: 'SET_CATEGORIES', payload: response.data });
+        console.log(response.data);
+        });
+    }, [dispatch]);
+    const categorieList = useSelector((state) => state.categorieList);
     return(     
 
         <div className="body">
@@ -83,9 +92,22 @@
                 <div class="categorie">
                     <h1 className='titre_home'> Categorie </h1>
                     <div class="cards">
-                        <Cartecat/>
-                        <Cartecat/>
-                        <Cartecat/>
+                    {console.log(categorieList)}
+                    {categorieList.map( (val) => {
+                        console.log("hiiiiiiiiiii"); 
+                        console.log( val);
+                        return (
+                        <div class="card">
+                            <div class="img">
+                                
+                            <img src={`http://localhost:7000/images/${val.image_path}`} alt=""/>
+                            </div>
+                            <div class="text">
+                                <p class="p"> {val.categories_name}</p>
+                            </div>
+                        </div>
+                        );
+                    })}  
                     </div>
                 </div>
                 

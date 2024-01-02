@@ -19,10 +19,15 @@ export default function CategorieiAd() {
     const [number, setNumber] = useState('') ;
     const [date, setDate] = useState('');
     const [image, setImage] = useState('');
-    // const [categorieList, setCategorieList] = useState([]);
+   
 
     const submitCategories = () => {
-        axios.post("http://localhost:7000/categories/insert", {categories_name: name , num_product:number, date_start:date, image_path: image}).then( () => {
+        const formdata = new FormData();
+        formdata.append('image', image);
+        formdata.append('categories_name', name);
+        formdata.append('num_product', number);
+        formdata.append('date_start', date);
+        axios.post("http://localhost:7000/categories/insert", formdata).then( () => {
             alert("successful insert");
           });  
     }
@@ -98,7 +103,7 @@ export default function CategorieiAd() {
             <input type='date' id='' name='date' onChange={ (e) => { setDate(e.target.value)}} required/>
 
             <label for="image" className='custom-file-upload'> add picture</label>
-            <input type="file" id="image" name="image1" accept="image/*"  onChange={ (e) => { setImage(e.target.value)}} required></input>
+            <input type="file" id="image" name="image1" accept="image/*"  onChange={ (e) => { setImage(e.target.files[0])}} required></input>
 
             <button onClick={submitCategories}>Ajouter</button>
                          
@@ -107,7 +112,6 @@ export default function CategorieiAd() {
 
 
         </div>
-
-        
+          
     </div>
 )}

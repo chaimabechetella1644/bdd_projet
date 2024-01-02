@@ -23,7 +23,9 @@ export default function Offres() {
     const [offreList, setoffresList] = useState([]);
 
     const ajouterOffre = () => {
-        axios.post('http://localhost:7000/offre/insert',{ name_offres: name , information: information , image_offre: image }).then( () => {
+        const formdata = new FormData();
+        formdata.append('image', image);
+        axios.post('http://localhost:7000/offre/insert',{ name_offres: name , information: information , formdata}).then( () => {
             alert("successful insert");
           });  
     }
@@ -81,7 +83,7 @@ export default function Offres() {
                         <input type='text' id='information' name='information' onChange={ (e) => {setInformation(e.target.value)}} required/>
 
                         <label for="image" className='custom-file-upload'> add picture</label>
-                        <input type="file" id="image" name="image1" accept="image/*"  onChange={ (e) => {setImage(e.target.value)}} required></input>
+                        <input type="file" id="image" name="image1" accept="image/*"  onChange={ (e) => {setImage(e.target.files[0])}} required></input>
 
                         <button onClick={ajouterOffre}>Ajouter</button>
                          
