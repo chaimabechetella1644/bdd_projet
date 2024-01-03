@@ -2,12 +2,14 @@
 import image from '../images/stepper_salle-de-sport-bordeaux-removebg-preview (3).png'
 import img1 from  '../images/vectorOrange.png'
 import img2 from '../images/Vectoror.png'
-import '../css/home.css'
+import '../css/home.css';
+import { NavLink } from 'react-router-dom';
 
 
 export default function Carte({product}) {
     console.log(product);
     return(
+        <NavLink to= {`/${product.product_id}`}>
         <div className="card">
             <div class="img">
             <img src={`http://localhost:7000/images/${product.product_image}`} alt=""/>
@@ -21,7 +23,9 @@ export default function Carte({product}) {
                     <img src={img2} alt=""/>
                     </div>
                 </div>
+                
             </div>
         </div>
+        </NavLink>
     )
 }

@@ -118,7 +118,9 @@
                             </div>
                             <div class="text">
                                 <p class="p"> {val.categories_name}</p>
+                                <NavLink to={`/${val.categories_name}`}> more </NavLink>
                             </div>
+                           
                         </div>
                         );
                     })}  

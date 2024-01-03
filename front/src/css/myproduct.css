@@ -7,7 +7,7 @@
     background-color: rgba(89, 89, 89, 0.26);
     width: 900px;
     padding: 20px 10px;
-    height: 400px;
+   
     margin: 100px auto 150px auto;
 }
 
@@ -27,12 +27,15 @@
 
 .produit .left {
     width: 500px;
+    margin-right: 80px;
+    margin-left: 20px;
 }
 
 .produit .left img {
-    width: 200px;
-    height: 200px;
-    margin-left: 10px;
+    width: 90%;
+    height: 250px;
+    
+    display: block;
 }
 
 .produit h3 {
@@ -74,15 +77,18 @@
     display: flex;
 }
 
-.produit .right .size div {
-    width: 20px;
-    height: 20px;
+.produit .right .size p {
     border-radius: 2px;
-    padding: 2px;
+    padding: 8px;
     margin-right: 10px;
     color: rgb(234,234,234);
     border: 1px solid rgba(94, 94, 94, 1) ;
    
+}
+
+.produit .button {
+    margin-bottom: 10px;
+    margin-top: 25px;
 }
 
 .produit .button button {
@@ -92,7 +98,7 @@
     color: rgb(234,234,234) ;
     text-transform: capitalize;
     cursor: pointer;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-right: 15px;
     font-weight: bolder;
 }

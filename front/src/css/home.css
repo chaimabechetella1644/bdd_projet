@@ -253,6 +253,7 @@
      border-radius: 25px;
      margin-right: 25px ;
      transition: transform var(--main-transition);
+     width: 250px;
 }
 .Product .card:hover {
         transform: translateY(-10px);
@@ -262,11 +263,14 @@
 
 .Product .cards .card .img {
     height: 200px;
-    width: auto;
+    width: 100%;
 }
 .Product .cards .card img {
-    height: 200px;
-    width: 250px;
+    height: 190px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 } 
 
 .Product .cards .card .text {
@@ -402,7 +406,7 @@
 .categorie .card {
     background: linear-gradient(to bottom , rgba(255,255,255,30%)20%,rgba(255,255,255,1%)85%);
     width: 260px;
-    height: 300px;
+    /* height: 300px; */
     border-radius: 25px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
@@ -418,15 +422,30 @@
 }
 .categorie .cards .card img {
     height: 190px;
-    width: 260px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 } 
 
 .categorie .cards .card .text .p {
     font-weight: bold;
     color: #fff;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
+}
+
+.categorie .cards .card .text a {
+    color: var(--main-color);
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid var(--main-color);
+    width: fit-content;
+    padding: 8px 15px;
+    border-radius: 3px ;
+    margin-bottom: 20px;
 }
 .categorie .cards .card .text button {
     display: flex;

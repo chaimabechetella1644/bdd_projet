@@ -5,11 +5,30 @@ import icon2 from '../images/Vector (2).png' ;
 import icon3 from '../images/Vector (1).png' ;
 import icon4 from '../images/Vector (5).png' ;
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import '../css/home.css'
 
 
 export default function Navbar() {
     let img = icon2
+
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        axios.get('http://localhost:7000/categories/select').then((response) => {
+        dispatch({ type: 'SET_CATEGORIES', payload: response.data });
+        console.log(response.data);
+        });
+    }, [dispatch]);
+    const categorieList = useSelector((state) => state.categorieList);
+
+
+
+    
+
 return (
 
     <div className="navbar">
@@ -21,15 +40,17 @@ return (
           <NavLink to="/" style={({isActive})=>{
                 return isActive ? { color: '#EE873D'} : {}
                 }} > Home </NavLink>
-          <NavLink to="/men" style={({isActive})=>{
+            {categorieList.map( (val) => { return (   
+          <NavLink to= {`/${val.categories_name}`} categorie ={val.categories_name} style={({isActive})=>{
                 return isActive ? { color: '#EE873D'} : {}
-                }}> shoes </NavLink>
-          <NavLink to="/women" style={({isActive})=>{
+                }}> {val.categories_name} </NavLink>
+            )} ) } 
+          {/* <NavLink to="/women" style={({isActive})=>{
                 return isActive ? { color: '#EE873D'} : {}
                 }}> sportswear </NavLink>
           <NavLink to="/machines" style={({isActive})=>{
                 return isActive ? { color: '#EE873D'} : {}
-                }}> equipement </NavLink>
+                }}> equipement </NavLink> */}
            <NavLink to="/admin">admin</NavLink>
         </div>
 
@@ -40,7 +61,7 @@ return (
           <img src={img}/>
           </NavLink>
           <NavLink to="/compte"> <img src={icon3} alt=""/> </NavLink>
-          <NavLink to="/product">page</NavLink>
+          
          
         </div>
       </div>

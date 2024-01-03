@@ -17,6 +17,7 @@ export default function Offres() {
         ele1ref.current.style.display = "flex" ;
     }   
 
+   
     const [name, setName] = useState('') ;
     const [information, setInformation] = useState('');
     const [image, setImage] = useState('');
@@ -25,7 +26,10 @@ export default function Offres() {
     const ajouterOffre = () => {
         const formdata = new FormData();
         formdata.append('image', image);
-        axios.post('http://localhost:7000/offre/insert',{ name_offres: name , information: information , formdata}).then( () => {
+        formdata.append('name_offres', name);
+        formdata.append('information', information);
+        
+        axios.post('http://localhost:7000/offre/insert', formdata).then( () => {
             alert("successful insert");
           });  
     }

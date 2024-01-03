@@ -51,8 +51,10 @@ export default function Profil() {
                         <h5> numero de telephne :</h5>
                         <p> 0662695753</p>
                     </div>
+
+                    <button onClick={change}> modifier les information</button>
                 </div>
-                <button onClick={change}> modifier les information</button>
+                
                 </div>
                 
             </div>
