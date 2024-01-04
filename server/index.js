@@ -53,6 +53,20 @@ app.post ("/categories/insert", upload.single('image'), (req, res) => {
      })    
 })
 
+app.put ("/categories/update", upload.single('image'), (req, res) => {
+
+    const categories_name = req.body.categories_name ;
+    const num_product = req.body.num_product ;
+    const date_start = req.body.date_start ;
+    const image_path = req.file.filename;	
+
+    const dbCategoriesInsert = ' Update categories_ad set  num_product = ?, date_start = ?, image_path = ? WHERE categories_name = ?'
+     db.query(dbCategoriesInsert, [num_product, date_start, image_path, categories_name], (err,resultat) => {
+        console.log(err)
+     })    
+})
+
+
 app.post('/offre/insert' , upload.single('image') ,(req, res) => {
 
     const name_offres = req.body.name_offres ;
@@ -63,6 +77,28 @@ app.post('/offre/insert' , upload.single('image') ,(req, res) => {
         console.log(err);
     })
 })
+
+app.get('/offre/select', (req, res) => {
+    const sqlSelectOffre = "SELECT * FROM offres";
+    db.query(sqlSelectOffre, (err, result) => {
+        res.send(result);
+    })
+})
+
+app.put("/offre/update", upload.single('image') ,(req, res) => {
+
+    const name_offres = req.body.name_offres ;
+    const information = req.body.information ;
+    const image_offre = req.file.filename ;
+    const offre_id = req.body.offre_id ; 
+    const sqlOffreUpdate = " Update offres set name_offres = ?, information = ?, image_offre = ? WHERE offre_id = ?" ;
+    db.query(sqlOffreUpdate, [name_offres, information, image_offre, offre_id], (err, result) => {
+        if(err) console.log(err)
+    })
+
+})
+
+
 
 app.post('/product/insert' , upload.single('image') , (req, res) => {
 
@@ -81,6 +117,24 @@ app.post('/product/insert' , upload.single('image') , (req, res) => {
     })
 })
 
+app.put('/product/update' , upload.single('image') , (req, res) => {
+
+    const product_name = req.body.product_name ;
+    const categorie = req.body.categorie ;
+    const gender = req.body.gender ;
+    const description = req.body.description ;
+    const size = req.body.size ;
+    const color = req.body.color;
+    const price = req.body.price;
+    const product_image = req.file.filename ;
+    const product_id = req.body.product_id ;
+
+    const dbproductInsert = 'Update products_ad set product_name  = ?, categorie = ?, gender = ?, description = ?, size = ?, color = ?, price = ?, product_image = ? WHERE product_id = ?'
+    db.query(dbproductInsert, [product_name, categorie, gender, description, size, color, price, product_image, product_id], (err, resultat) => {
+        console.log(err);
+    })
+})
+
 app.get('/categories/select', (req, res) => {
     const sqlSelectCategorie = "SELECT * FROM categories_ad" ;
     db.query(sqlSelectCategorie, (err, result) => {
@@ -88,12 +142,7 @@ app.get('/categories/select', (req, res) => {
     })
 })
 
-app.get('/offre/select', (req, res) => {
-    const sqlSelectOffre = "SELECT * FROM offres";
-    db.query(sqlSelectOffre, (err, result) => {
-        res.send(result);
-    })
-})
+
 
 app.get('/product/select', (req, res) => {
     const sqlSelectProduct = "SELECT * FROM products_ad";
@@ -152,6 +201,7 @@ app.delete("/product/delete/:product_id", (req, res) => {
         else (res.status(204).send())
     })
 })
+
 
 
 

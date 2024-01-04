@@ -8,6 +8,9 @@ import suppr from '../images/signe-de-multiplication.png' ;
 import '../css/admin.css';
 import { useRef, useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import modi from '../images/modification-du-stylo.png'
+
+
 import axios from 'axios';
 
 
@@ -18,6 +21,12 @@ export default function ProductAd() {
         ele1ref.current.style.display = "flex" ;
     }
 
+    const ele2ref = useRef(null) ;
+    const change2 = (e) => {
+        ele2ref.current.style.display = "flex" ;
+        setCurrentOffreId(e)
+    } 
+
     const [name, setName] = useState('') ;
     const [category, setCategory] = useState('') ;
     const [gender, setGender] = useState('');
@@ -27,7 +36,26 @@ export default function ProductAd() {
     const [price, setPrice] = useState('');
     const [picture, setPicture] = useState('');
     const [productList, setProductList] = useState([]);
+    const [currentOffreId, setCurrentOffreId] = useState(null);
 
+
+    const modifyProduct = () => {
+        const formdata = new FormData();
+        formdata.append('image', picture);
+        formdata.append('product_name', name);
+        formdata.append('categorie', category);
+        formdata.append('gender', gender);
+        formdata.append('description', discreption);
+        formdata.append('size', size);
+        formdata.append('color', color);
+        formdata.append('price', price);
+        formdata.append('product_id',currentOffreId)
+        axios.put("http://localhost:7000/product/update", formdata).then( () => {
+            alert("successful insert");
+          }).catch(error => {
+            console.error('Error fetching offers:', error);
+        });
+    }
 
     const submitProduct = () => {
         const formdata = new FormData();
@@ -112,7 +140,12 @@ export default function ProductAd() {
                                 <td>{val.product_name}</td>
                                 <td>{val.product_id}</td>
                                 <td>{val.price}</td>
-                                <td type="submit" className='deleteImg'> <button onClick={ () => {deleteProduct(val.product_id)}}> <img src={suppr} alt='image'/> </button></td>
+                                <td type="submit" className='deleteImg'>
+                                    <button type='submit' onClick={() => change2(val.product_id)} href=""><img src={modi} alt='image'/></button>
+
+                                    <button onClick={ () => {deleteProduct(val.product_id)}}> <img src={suppr} alt='image'/> </button>
+                                </td>
+
    
                             </tr>
                             )
@@ -159,6 +192,44 @@ export default function ProductAd() {
             <input type="file" id="image" name="image1" accept="image/*" onChange={ (e) => setPicture(e.target.files[0])} required></input>
 
             <button onClick={submitProduct}>Ajouter</button>
+                         
+        </div>
+
+        <div class="form1" ref={ele2ref} >
+            <h2> modifier produit</h2>
+            <label for="name"> name : </label>
+            <input type="text" id=''  name='name' onChange={ (e) => setName(e.target.value)} required/>
+            <label for='category'> category :</label>
+            <select id="category" onChange={(e) => setCategory(e.target.value)} value={category}>
+            {categorieList.map((val) => {
+                  console.log('Category value:', val.categories_name);
+                return(
+                <option  value={val.categories_name}>
+                {val.categories_name}
+                </option>
+                )
+            })}
+            </select>
+            <label for='gender'> gender :</label>
+            <select id="gender" onChange={(e) => setGender(e.target.value)} value={gender}>
+                <option value="">Select gender</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="machine">Machine</option>
+            </select>
+            <label for='description'> description :</label>
+            <input type='text' id='description' name='information' onChange={ (e) => setDiscreption(e.target.value)} required/>
+            <label for='size'> size :</label>
+            <input type='text' id='size' name='information' onChange={ (e) => setSize(e.target.value)} required/>
+            <label for='color'> color :</label>
+            <input type='text' id='color' name='information' onChange={ (e) => setColor(e.target.value)} required/>
+            <label for='price'> price(Da):</label>
+            <input type='text' id='price' name='information' onChange={ (e) => setPrice(e.target.value)} required/>
+
+            <label for="image" className='custom-file-upload' > add picture </label>
+            <input type="file" id="image" name="image1" accept="image/*" onChange={ (e) => setPicture(e.target.files[0])} required></input>
+
+            <button onClick={modifyProduct}>Ajouter</button>
                          
         </div>
         </div> 
